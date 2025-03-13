@@ -18,7 +18,7 @@ def load_mood_data():
 # Function to save the mood data
 def save_mood_data(date, selected_mood):
     
-    with open (MOOD_FILE, mode='a', newline='', encoding="utf-8") as file:
+    with open (MOOD_FILE, mode='a', newline='') as file:
         
         writer = csv.writer(file) # Creates a CSV writer object that allows us to write data to the CSV file in a structured way
         writer.writerow([date, selected_mood]) # Writes the date and mood to the CSV file
