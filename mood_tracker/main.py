@@ -53,7 +53,7 @@ if st.button("💾 Log My Mood"): # Creates a button that, when clicked, execute
     
 data = load_mood_data() # Loads the mood data
 
-if not data.empty: # Checks if the DataFrame is not empty
+if not data.empty and "Date" in data.columns and "Mood" in data.columns: # Checks if the DataFrame is not empty
     
     st.subheader("📈 Mood Trends Over Time") # Adds a subheader to the web app
     
