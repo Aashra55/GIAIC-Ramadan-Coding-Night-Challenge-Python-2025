@@ -48,7 +48,7 @@ selected_mood = mood_options[mood] # Get the text value
 
 if st.button("💾 Log My Mood"): # Creates a button that, when clicked, executes the code block below
     
-    save_mood_data(today, mood) # Saves the mood data to the CSV file
+    save_mood_data(today, selected_mood) # Saves the mood data to the CSV file
     st.success("💖 Mood Logged! Hope you have a great day! 🌞") # Displays a success message
     
 data = load_mood_data() # Loads the mood data
@@ -74,6 +74,9 @@ if not data.empty and "Date" in data.columns: # Checks if the DataFrame is not e
         file_name="mood_logs.csv",
         mime="text/csv"
     )
+
+else: # If the DataFrame is empty, display a message
     
+    st.info("No mood data available. Log your mood to see trends over time.") # Displays an informational message
     
 
