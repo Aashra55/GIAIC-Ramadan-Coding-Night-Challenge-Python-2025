@@ -75,9 +75,5 @@ if not data.empty and "Date" in data.columns: # Checks if the DataFrame is not e
         mime="text/csv"
     )
     
-
-else: # If the DataFrame is empty, display a message
-    
-    st.info("No mood data available. Log your mood to see trends over time.") # Displays an informational message
     
 
