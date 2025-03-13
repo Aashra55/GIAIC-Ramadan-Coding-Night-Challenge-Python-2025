@@ -10,7 +10,7 @@ MOOD_FILE = "mood_log.csv"
 def load_mood_data():
     
     if not os.path.exists(MOOD_FILE): # If path does not exist, return an empty DataFrame
-        return pd.DataFrame(columns=["date", "mood"]) # Creates an empty DataFrame with columns "date" and "mood"
+        return pd.DataFrame(columns=["Date", "Mood"]) # Creates an empty DataFrame with columns "date" and "mood"
     
     return pd.read_csv(MOOD_FILE) # Reads the CSV file and returns a DataFrame
 
