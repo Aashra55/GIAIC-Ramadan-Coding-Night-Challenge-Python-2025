@@ -71,24 +71,28 @@ if not data.empty and "Date" in data.columns and "Mood" in data.columns: # Check
     
     st.subheader("📈 Mood Trends Over Time") # Adds a subheader to the web app
     
-    data["Date"] = pd.to_datetime(data["Date"]) # Converts the "Date" column to a datetime format while preserving all other columns
+    try: 
+        data["Date"] = pd.to_datetime(data["Date"], errors="coerce") # Converts the "Date" column to a datetime format while preserving all other columns
+        data = data.dropna(subset=["Date"]) # Drops rows with missing dates
     
-    mood_counts = data.groupby("Mood").count()["Date"] # Groups the data by "mood" and counts the number of occurrences of each mood
-    
-    st.bar_chart(mood_counts)
+        mood_counts = data.groupby("Mood").count()["Date"] # Groups the data by "mood" and counts the number of occurrences of each mood
+        st.bar_chart(mood_counts)
      
-    st.subheader("🔍 Recent Mood Check-Ins") # Adds a subheader to the web app
+        st.subheader("🔍 Recent Mood Check-Ins") # Adds a subheader to the web app
     
-    st.dataframe(data.tail()) # Displays the last 5 rows of the DataFrame
+        st.dataframe(data.tail()) # Displays the last 5 rows of the DataFrame
     
-    # Download Button for Mood History
-    st.download_button(
-        label="📥 Download Mood History",
-        data=data.to_csv(index=False),
-        file_name="mood_logs.csv",
-        mime="text/csv"
-    )
-
+        # Download Button for Mood History
+        st.download_button(
+            label="📥 Download Mood History",
+            data=data.to_csv(index=False),
+            file_name="mood_logs.csv",
+            mime="text/csv"
+        )
+        
+    except Exception as e:
+        st.error(f"Error processing mood data: {e}")
+        
 else: # If the DataFrame is empty, display a message
     
     st.info("No mood data available. Log your mood to see trends over time.") # Displays an informational message
