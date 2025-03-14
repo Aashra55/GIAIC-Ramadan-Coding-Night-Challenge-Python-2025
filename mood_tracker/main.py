@@ -6,6 +6,14 @@ import os # For file operations
 
 MOOD_FILE = "mood_log.csv"
 
+def ensure_mood_file():
+    if not os.path.exists(MOOD_FILE):  
+        with open(MOOD_FILE, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Date", "Mood"])  # Ensure headers exist
+
+ensure_mood_file()  
+
 # Function to load the mood data
 def load_mood_data():
     
