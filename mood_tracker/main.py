@@ -6,6 +6,12 @@ import os # For file operations
 
 MOOD_FILE = "mood_log.csv"
 
+# Function to delete the mood file
+def delete_mood_file():
+    if os.path.exists(MOOD_FILE):
+        os.remove(MOOD_FILE)
+        
+# Function to ensure the mood file exists
 def ensure_mood_file():
     if not os.path.exists(MOOD_FILE):  
         with open(MOOD_FILE, mode='w', newline='', encoding="utf-8") as file:
@@ -99,4 +105,5 @@ else: # If the DataFrame is empty, display a message
     
     st.info("No mood data available. Log your mood to see trends over time.") # Displays an informational message
     
-
+st.cache_data.clear() # Clears the cache
+delete_mood_file() # Removes CSV file on refresh
