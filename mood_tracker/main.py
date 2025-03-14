@@ -8,7 +8,7 @@ MOOD_FILE = "mood_log.csv"
 
 def ensure_mood_file():
     if not os.path.exists(MOOD_FILE):  
-        with open(MOOD_FILE, mode='w', newline='', encoding='utf-8') as file:
+        with open(MOOD_FILE, mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(["Date", "Mood"])  # Ensure headers exist
 
@@ -20,8 +20,14 @@ def load_mood_data():
     if not os.path.exists(MOOD_FILE): # If path does not exist, return an empty DataFrame
         return pd.DataFrame(columns=["Date", "Mood"]) # Creates an empty DataFrame with columns "date" and "mood"
     
-    return pd.read_csv(MOOD_FILE) # Reads the CSV file and returns a DataFrame
-
+    try :
+        data = pd.read_csv(MOOD_FILE) # Reads the CSV file and stores the data in a DataFrame
+        if "Date" not in data.columns or "Mood" not in data.columns:
+            return pd.DataFrame(columns=["Date", "Mood"]) # Creates an empty DataFrame with columns "date" and "mood"
+        return data # Returns the DataFrame
+    except Exception as e:
+        st.error(f"Error loading mood data: {e}")
+        return pd.DataFrame(columns=["Date", "Mood"])
 
 # Function to save the mood data
 def save_mood_data(date, selected_mood):
