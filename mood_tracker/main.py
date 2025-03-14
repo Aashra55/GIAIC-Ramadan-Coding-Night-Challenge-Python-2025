@@ -60,6 +60,9 @@ mood_options = {
 mood = st.selectbox("Select your mood", list(mood_options.keys())) # Creates a dropdown menu for selecting the mood
 selected_mood = mood_options[mood] # Get the text value
 
+if "mood_data" not in st.session_state:
+    st.session_state.mood_data = load_mood_data()
+
 if st.button("💾 Log My Mood"): # Creates a button that, when clicked, executes the code block below
     
     save_mood_data(today, selected_mood) # Saves the mood data to the CSV file
