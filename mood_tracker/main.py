@@ -8,7 +8,7 @@ MOOD_FILE = "mood_log.csv"
 
 def ensure_mood_file():
     if not os.path.exists(MOOD_FILE):  
-        with open(MOOD_FILE, mode='w', newline='') as file:
+        with open(MOOD_FILE, mode='w', newline='', encoding="utf-8") as file:
             writer = csv.writer(file)
             writer.writerow(["Date", "Mood"])  # Ensure headers exist
 
@@ -21,7 +21,7 @@ def load_mood_data():
         return pd.DataFrame(columns=["Date", "Mood"]) # Creates an empty DataFrame with columns "date" and "mood"
     
     try :
-        data = pd.read_csv(MOOD_FILE) # Reads the CSV file and stores the data in a DataFrame
+        data = pd.read_csv(MOOD_FILE,encoding="utf-8") # Reads the CSV file and stores the data in a DataFrame
         if "Date" not in data.columns or "Mood" not in data.columns:
             return pd.DataFrame(columns=["Date", "Mood"]) # Creates an empty DataFrame with columns "date" and "mood"
         return data # Returns the DataFrame
@@ -30,12 +30,12 @@ def load_mood_data():
         return pd.DataFrame(columns=["Date", "Mood"])
 
 # Function to save the mood data
-def save_mood_data(date, selected_mood):
+def save_mood_data(date, mood):
     
-    with open (MOOD_FILE, mode='a', newline='') as file:
+    with open (MOOD_FILE, mode='a', newline='', encoding="utf-8") as file:
         
         writer = csv.writer(file) # Creates a CSV writer object that allows us to write data to the CSV file in a structured way
-        writer.writerow([date, selected_mood]) # Writes the date and mood to the CSV file
+        writer.writerow([date, mood]) # Writes the date and mood to the CSV file
         
 
 today = datetime.date.today() # Gets the current date
@@ -50,22 +50,21 @@ st.title("🎭 Mood Insights 📊") # Sets the title of the web app
 
 st.subheader("How are you feeling today?😃") # Adds a subheader to the web app
 
-mood_options = {
-    "😊 Happy": "Happy",
-    "😐 Neutral": "Neutral",
-    "😢 Sad": "Sad",
-    "😡 Angry": "Angry"
-}
+mood_options = [
+    "😊 Happy",
+    "😐 Neutral",
+    "😢 Sad",
+    "😡 Angry"
+]
 
-mood = st.selectbox("Select your mood", list(mood_options.keys())) # Creates a dropdown menu for selecting the mood
-selected_mood = mood_options[mood] # Get the text value
+mood = st.selectbox("Select your mood", mood_options) # Creates a dropdown menu for selecting the mood
 
 if "mood_data" not in st.session_state:
     st.session_state.mood_data = load_mood_data()
 
 if st.button("💾 Log My Mood"): # Creates a button that, when clicked, executes the code block below
     
-    save_mood_data(today, selected_mood) # Saves the mood data to the CSV file
+    save_mood_data(today, mood) # Saves the mood data to the CSV file
     st.success("💖 Mood Logged! Hope you have a great day! 🌞") # Displays a success message
     
 data = load_mood_data() # Loads the mood data
