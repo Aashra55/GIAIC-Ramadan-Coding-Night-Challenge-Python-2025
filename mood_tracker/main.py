@@ -4,9 +4,9 @@ import datetime # For handling dates
 import csv # For reading and writing CSV files
 import os # For file operations
 
-MOOD_FILE = "mood_log.csv"
+MOOD_FILE = "mood_data.csv"
 
-# Function to delete the mood file
+# Function
 def delete_mood_file():
     if os.path.exists(MOOD_FILE):
         os.remove(MOOD_FILE)
@@ -68,6 +68,10 @@ mood = st.selectbox("Select your mood", mood_options) # Creates a dropdown menu 
 if "mood_data" not in st.session_state:
     st.session_state.mood_data = load_mood_data()
 
+if "first_run" not in st.session_state:
+    delete_mood_file()
+    st.session_state.first_run = True
+
 if st.button("💾 Log My Mood"): # Creates a button that, when clicked, executes the code block below
     
     save_mood_data(today, mood) # Saves the mood data to the CSV file
@@ -105,5 +109,4 @@ else: # If the DataFrame is empty, display a message
     
     st.info("No mood data available. Log your mood to see trends over time.") # Displays an informational message
     
-st.cache_data.clear() # Clears the cache
-delete_mood_file() # Removes CSV file on refresh
+
