@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Python Basics",
+        "content": "Updated Introduction to Python",
+        "author": "John Doe"
+    },
+    {
+        "name": "Machine Learning Guide",
+        "content": "Basics of ML and AI.",
+        "author": "Andrew Ng"
+    },
+    {
+        "name": "Data Science Essentials",
+        "content": "Learn data analysis and visualization.",
+        "author": "Jake VanderPlas"
+    },
+    {
+        "name": "Web Development with Flask",
+        "content": "Build web apps using Flask framework.",
+        "author": "Miguel Grinberg"
+    },
+    {
+        "name": "JavaScript Mastery",
+        "content": "Advanced concepts of JavaScript.",
+        "author": "Kyle Simpson"
+    },
+    {
+        "name": "Next.js for Beginners",
+        "content": "Guide to building modern web apps with Next.js.",
+        "author": "Dan Abramov"
+    },
+    {
+        "name": "Deep Learning with TensorFlow",
+        "content": "Neural networks and deep learning with TensorFlow.",
+        "author": "Francois Chollet"
+    },
+    {
+        "name": "Algorithms and Data Structures",
+        "content": "Master the foundations of programming.",
+        "author": "Robert Sedgewick"
+    },
+    {
+        "name": "React.js Handbook",
+        "content": "Learn React.js from basics to advanced topics.",
+        "author": "Flavio Copes"
+    },
+    {
+        "name": "Cybersecurity Fundamentals",
+        "content": "Guide to online security and ethical hacking.",
+        "author": "Bruce Schneier"
+    }
+]
