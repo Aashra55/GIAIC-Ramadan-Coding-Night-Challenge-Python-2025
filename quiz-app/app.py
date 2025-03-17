@@ -42,7 +42,7 @@ with col1:
 with col2:
     # Display score with custom styling
     st.markdown(
-        f'<h3 style="color:  #E4599C;">Score: <b>{st.session_state.quiz_score}</b></h3>',
+        f'<h3 style="color:rgb(213, 63, 136);">Score: <b>{st.session_state.quiz_score}</b></h3>',
         unsafe_allow_html=True
     )
 
