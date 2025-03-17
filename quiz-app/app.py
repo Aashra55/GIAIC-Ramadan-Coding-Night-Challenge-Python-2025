@@ -62,14 +62,16 @@ if st.button("Submit Answer"):
         st.info(f"The correct answer is: **{question['answer']}**")
 
 with col2:
-    timer_placeholder = st.empty()
-    total_time = 11
-    for i in range(total_time, 0, -1):
-        total_time -= 1
+    timer_placeholder = st.empty() # Placeholder for the timer
+    total_time = 11 # Total time for each question
+    for i in range(total_time, 0, -1): # Countdown timer
+        total_time -= 1 # Time Decrease by 1 second
         timer_placeholder.info(f"⏳ Hurry up! Only **{total_time:02}** second(s) remaining! ⏰")
-        time.sleep(1)
+        time.sleep(1) # Sleep for 1 second
       
 # Select a new random question
 st.session_state.current_question = random.choice(quiz_questions)
     
 st.rerun()  # Refresh the app to display the new question
+
+
