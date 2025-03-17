@@ -46,8 +46,11 @@ with col2:
         unsafe_allow_html=True
     )
 
-# Display multiple-choice options as radio buttons
-selected_option = st.radio("Select an option", question["options"], key="answer")
+col1, col2 = st.columns(2)
+
+with col1:
+    # Display multiple-choice options as radio buttons
+    selected_option = st.radio("Select an option", question["options"], key="answer")
 
 # Submit answer button
 if st.button("Submit Answer"):
@@ -57,10 +60,16 @@ if st.button("Submit Answer"):
     else:
         st.error("Incorrect! 😢 You got **0**")
         st.info(f"The correct answer is: **{question['answer']}**")
+
+with col2:
+    timer_placeholder = st.empty()
+    total_time = 11
+    for i in range(total_time, 0, -1):
+        total_time -= 1
+        timer_placeholder.info(f"⏳ Hurry up! Only **{total_time:02}** second(s) remaining! ⏰")
+        time.sleep(1)
+      
+# Select a new random question
+st.session_state.current_question = random.choice(quiz_questions)
     
-    time.sleep(3)  # Wait for 3 seconds before showing the next question
-    
-    # Select a new random question
-    st.session_state.current_question = random.choice(quiz_questions)
-    
-    st.rerun()  # Refresh the app to display the new question
+st.rerun()  # Refresh the app to display the new question
