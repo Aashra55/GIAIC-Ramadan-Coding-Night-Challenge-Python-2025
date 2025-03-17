@@ -45,9 +45,8 @@ Replace `app.py` with the filename of the script.
 - Customize the score display and add sound effects for correct/wrong answers.
 
 ## Future Improvements
-- Implement a timer for each question.
-- Store scores in a database for persistent tracking.
 - Add different difficulty levels.
 - Include a final score summary at the end of the quiz.
 - Implement a leaderboard to track high scores.
 - Add more categories and allow users to select their preferred quiz topics.
+
