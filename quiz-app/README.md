@@ -50,3 +50,4 @@ Replace `app.py` with the filename of the script.
 - Implement a leaderboard to track high scores.
 - Add more categories and allow users to select their preferred quiz topics.
 
+
