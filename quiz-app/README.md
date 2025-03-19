@@ -89,3 +89,4 @@ You can customize the quiz by:
 
 - Built with [Streamlit](https://streamlit.io/).
 - Special thanks to the contributors of [streamlit-autorefresh](https://github.com/randyzwitch/streamlit-autorefresh).
+
