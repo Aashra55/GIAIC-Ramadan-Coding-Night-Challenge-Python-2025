@@ -1,4 +1,2 @@
 streamlit
-st_autorefresh
-random
-time
+streamlit-autorefresh
