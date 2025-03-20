@@ -4,7 +4,7 @@ import time # Import to work with time-related functions, like measuring elapsed
 
 # Import the st_autorefresh function from the streamlit_autorefresh module,
 # which allows the app to automatically refresh at set intervals.
-from streamlit_autorefresh import st_autorefresh
+# from streamlit_autorefresh import st_autorefresh
 
 # -------------------------------
 # Page Configuration and Title
@@ -61,7 +61,15 @@ if "submission_time" not in st.session_state:
 # Auto-Refresh Setup
 # -------------------------------
 # Refresh the app every 1000 milliseconds (1 second) to update the timer and check for submission delay.
-st_autorefresh(interval=1000, key="quiz_autorefresh")
+# st_autorefresh(interval=1000, key="quiz_autorefresh")
+# Auto-refresh using session state
+if "last_ran" not in st.session_state:
+    st.session_state.last_ran = time.time()
+
+# Refresh every 5 seconds
+if time.time() - st.session_state.last_ran > 5:
+    st.session_state.last_ran = time.time()
+    st.rerun()
 
 # -------------------------------
 # Displaying the Question and Score
